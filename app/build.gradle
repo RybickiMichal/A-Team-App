@@ -14,7 +14,9 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-
+    packagingOptions {
+        resources.excludes.add("META-INF/*")
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -39,4 +41,7 @@ dependencies {
     def aws_version = "2.16.+"
     implementation "com.amazonaws:aws-android-sdk-polly:$aws_version"
     implementation "com.amazonaws:aws-android-sdk-mobile-client:$aws_version"
+
+    implementation 'com.amazonaws:aws-android-sdk-translate:2.6.20'
+    implementation 'com.amazonaws:aws-android-sdk-appsync:2.8.3'
 }
