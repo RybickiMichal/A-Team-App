@@ -10,7 +10,7 @@ public class CognitoCredentials {
     public CognitoCachingCredentialsProvider getCognitoCredentialsProvider(Context context) {
         return new CognitoCachingCredentialsProvider(
                 context,
-                "eu-central-1:882537c6-e64f-4df4-b0fc-9510023a5a0c",
+                "tu wpisz identity pool id",
                 Regions.EU_CENTRAL_1);
     }
 }

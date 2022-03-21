@@ -18,8 +18,8 @@ import com.amazonaws.services.translate.model.TranslateTextRequest;
 import com.amazonaws.services.translate.model.TranslateTextResult;
 import com.example.teamaapp.credentials.AmazonCredentials;
 import com.example.teamaapp.credentials.CognitoCredentials;
-import com.example.teamaapp.model.Language;
-import com.example.teamaapp.task.VoicesTask;
+import com.example.teamaapp.polly.Language;
+import com.example.teamaapp.polly.VoicesTask;
 
 import java.io.IOException;
 import java.net.URL;
@@ -51,7 +51,6 @@ public class MainActivity extends Activity {
         } catch (ExecutionException | InterruptedException error) {
             Log.e(TAG, "Error during execute voiceTask" + error);
         }
-
     }
 
     public void translateText(View view) {
@@ -81,36 +80,9 @@ public class MainActivity extends Activity {
     public void readText(View view) {
         Log.i(TAG, "read text - actual country code: " + countryCode);
         Language language = Language.valueOf(countryCode.toUpperCase());
-        Voice voice = chooseVoice(language);
+        Voice voice = VoicesTask.chooseVoice(language, TAG, voices);
         URL presignedSynthesizeSpeechUrl = createSynthesizeSpeechPresignRequest(textEditText.getText().toString(), voice);
         playSpeech(presignedSynthesizeSpeechUrl);
-    }
-
-    private Voice chooseVoice(Language language) {
-        for (Voice voice : voices) {
-            Log.i(TAG, "voice name " + voice.getName());
-            Log.i(TAG, "country code " + language.countryCode);
-            switch (language) {
-                case PL:
-                    if (voice.getName().equals("Ewa"))
-                        return voice;
-                    break;
-                case EN:
-                    if (voice.getName().equals("Joanna"))
-                        return voice;
-                    break;
-                case FR:
-                    if (voice.getName().equals("Mathieu"))
-                        return voice;
-                    break;
-                case DE:
-                    if (voice.getName().equals("Vicki"))
-                        return voice;
-                    break;
-            }
-            Log.i(TAG, "read text - chosen speaker: " + voice.getName());
-        }
-        throw new IllegalArgumentException("Voice doesn't exist");
     }
 
     private URL createSynthesizeSpeechPresignRequest(String text, Voice voice) {
@@ -132,17 +104,7 @@ public class MainActivity extends Activity {
             Log.e(TAG, "Unable to set data source for the media player! " + e.getMessage());
         }
         mediaPlayer.prepareAsync();
-        mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-            @Override
-            public void onPrepared(MediaPlayer mp) {
-                mp.start();
-            }
-        });
-        mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mp) {
-                mp.release();
-            }
-        });
+        mediaPlayer.setOnPreparedListener(mp -> mp.start());
+        mediaPlayer.setOnCompletionListener(mp -> mp.release());
     }
 }
