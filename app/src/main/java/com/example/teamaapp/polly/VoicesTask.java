@@ -64,6 +64,42 @@ public class VoicesTask extends AsyncTask<CognitoCachingCredentialsProvider, Voi
                     if (voice.getName().equals("Mizuki"))
                         return voice;
                     break;
+                case PT:
+                    if (voice.getName().equals("Cristiano"))
+                        return voice;
+                    break;
+                case NO:
+                    if (voice.getName().equals("Liv"))
+                        return voice;
+                    break;
+                case IT:
+                    if (voice.getName().equals("Carla"))
+                        return voice;
+                    break;
+                case NL:
+                    if (voice.getName().equals("Ruben"))
+                        return voice;
+                    break;
+                case AR:
+                    if (voice.getName().equals("Zeina"))
+                        return voice;
+                    break;
+                case DA:
+                    if (voice.getName().equals("Naja"))
+                        return voice;
+                    break;
+                case RO:
+                    if (voice.getName().equals("Carmen"))
+                        return voice;
+                    break;
+                case IS:
+                    if (voice.getName().equals("Karl"))
+                        return voice;
+                    break;
+                case SV:
+                    if (voice.getName().equals("Astrid"))
+                        return voice;
+                    break;
             }
             Log.i(TAG, "read text - chosen speaker: " + voice.getName());
         }

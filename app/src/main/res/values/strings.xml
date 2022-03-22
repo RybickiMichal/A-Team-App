@@ -3,4 +3,6 @@
     <string name="read">Read</string>
     <string name="translate">Translate</string>
     <string name="choose_voice">Choose a voice</string>
+    <string name="tip">English is default language</string>
+    <string name="languages">Available languages: pl, en, de, ru, es, tr, zh, ja, fr, pt, no, it, nl, ar, da, ro, is, sv</string>
 </resources>

@@ -9,6 +9,15 @@ public enum Language {
     TR("tr"),
     ZH("zh"),
     JA("ja"),
+    PT("pt"),
+    NO("no"),
+    IT("it"),
+    NL("nl"),
+    AR("ar"),
+    DA("fa"),
+    RO("ro"),
+    IS("is"),
+    SV("sv"),
     FR("fr");
 
     public final String countryCode;
